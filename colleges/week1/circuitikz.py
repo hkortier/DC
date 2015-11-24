@@ -37,7 +37,8 @@ class Circuitikz(Magics):
         options = {'filename': 'ipynb-circuitikz-output',
                    'dpi': '100',
                    'format': 'png',
-                   'options': 'europeanresistors,americaninductors'}
+                   'options': 'europeanresistors,americaninductors',
+                   'replace': 'true'}
 
 
         for option in line.split(" "):
@@ -50,27 +51,39 @@ class Circuitikz(Magics):
             except:
                 pass
 
+        folder = 'circuits/'
         filename = options['filename']
         code = cell
 
-        os.system("rm -f %s.tex %s.pdf %s.png" % (filename, filename, filename))        
+        if options['replace'] != 'false':
+            os.system("rm -f %s.tex %s.pdf %s.png" % (folder+filename, folder+filename, folder+filename))        
 
-        with open(filename + ".tex", "w") as file:
-            file.write(latex_template % (options['options'], cell))
+            with open(folder+filename + ".tex", "w") as file:
+                file.write(latex_template % (options['options'], cell))
     
-        os.system("pdflatex -interaction batchmode %s.tex" % filename)
-        os.system("rm -f %s.aux %s.log" % (filename, filename))        
-        os.system("pdfcrop %s.pdf %s-tmp.pdf" % (filename, filename))
-        os.system("mv %s-tmp.pdf %s.pdf" % (filename, filename))        
+            os.system("pdflatex -interaction batchmode -output-directory=%s %s.tex" % (folder,filename))
+            os.system("rm -f %s.aux %s.log" % (folder+filename, folder+filename))        
+            os.system("pdfcrop %s.pdf %s-tmp.pdf" % (folder+filename, folder+filename))
+            os.system("mv %s-tmp.pdf %s.pdf" % (folder+filename, folder+filename))        
 
-        if options['format'] == 'png':
-            os.system("convert -density %s %s.pdf %s.png" % (options['dpi'], filename, filename))
-            result = Image(filename=filename + ".png")
+            if options['format'] == 'png':
+                os.system("convert -density %s %s.pdf %s.png" % (options['dpi'], folder+filename, folder+filename))
+                result = Image(filename=folder+filename + ".png")
+            else:
+                os.system("pdf2svg %s.pdf %s.svg" % (folder+filename, folder+filename))
+                result = SVG(folder+filename + ".svg")
+
+            return result
         else:
-            os.system("pdf2svg %s.pdf %s.svg" % (filename, filename))
-            result = SVG(filename + ".svg")
 
-        return result
+            if options['format'] == 'png':
+                #os.system("convert -density %s %s.pdf %s.png" % (options['dpi'], filename, filename))
+                result = Image(filename=folder+filename + ".png")
+            else:
+               # os.system("pdf2svg %s.pdf %s.svg" % (filename, filename))
+                result = SVG(folder+filename + ".svg")
+
+            return result
 
 
 def load_ipython_extension(ipython):
