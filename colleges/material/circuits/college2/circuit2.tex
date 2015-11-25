@@ -1,0 +1,14 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\begin{document}
+
+\begin{circuitikz}
+      \draw (0,0)
+      to[V,v=$U_1$] (0,3) 
+      to[R, l=$R_1$,-*] (3,3) node[label={[font=\footnotesize]above:A}] {}
+  
+      to[R, l=$R_2$] (3,0) 
+      to[R, l=$R_3$] (0,0) 
+\end{circuitikz}
+\end{document}
