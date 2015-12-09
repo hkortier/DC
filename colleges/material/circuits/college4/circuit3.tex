@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\begin{document}
+
+\begin{circuitikz}
+      \draw (0,0)
+      to[short] (0,4) 
+      to[R, l_=$R_4\text{$=$}4~\Omega$] (3,4)
+      to [R, l=$R_3\text{$=$}3~\Omega$] (3,2)
+      to [R, l=$R_2\text{$=$}2~\Omega$] (3,0)
+      to[short] (0,0) 
+      
+      (3,4) to[R, l_=$R_1\text{$=$}1~\Omega$,-o] (6,4) node[label={[font=\footnotesize]right:$A$}] {}
+      (3,0) to[short,-o] (6,0) node[label={[font=\footnotesize]right:$B$}] {}
+      ;
+        
+\end{circuitikz}
+\end{document}

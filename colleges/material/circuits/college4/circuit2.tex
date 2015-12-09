@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\begin{document}
+
+\begin{circuitikz}
+      \draw (0,0)
+      to[V,v=$U_i\text{$=$}10~V$] (0,4) 
+      to[R, l_=$R_4\text{$=$}4~\Omega$] (3,4)
+      to [R, l=$R_3\text{$=$}3~\Omega$] (3,2)
+      to [R, l=$R_2\text{$=$}2~\Omega$] (3,0)
+      to[short] (0,0) 
+      
+      (3,4) to[R, l_=$R_1\text{$=$}1~\Omega$,-o] (6,4) node[label={[font=\footnotesize]right:$A$}] {}
+      (3,0) to[short,-o] (6,0) node[label={[font=\footnotesize]right:$B$}] {}
+      ;
+      \draw
+      [red] (6,4) to[R, l=$R_L$,color=red] (6,0)
+      ;
+        
+      %\begin{scope}[xshift=8cm,on grid]  
+      %\node (a) at (0,0) {a1};  
+      %\node[above right= 1cm and 2cm of a] (b) {b1};
+      %\draw (a) |- (b);
+      %\end{scope}
+    
+      %\draw[>=angle 45,->,blue,shorten <=1mm, shorten >=1mm] (7,2) -- (8,4);
+      \draw[->,blue,line width=3pt] (7,2) -- (8,3);
+      \draw[->,blue,line width=3pt] (7,2) -- (8,1);
+      \draw[<->,blue,line width=3pt] (10.5,1.5) -- (10.5,2.5);  
+    
+      \begin{scope}[xshift=9cm,yshift=3cm,on grid] 
+      \draw (0,0)
+      to[V,v=$U_{th}$] (0,2) 
+      to[R, l_=$R_{eq}$,-o] (3,2)
+      (0,0) to[short,-o] (3,0);
+      \draw
+      [red] (3,2) to[R, l=$R_L$,color=red] (3,0)
+      ;
+      \end{scope}
+        
+        
+      \begin{scope}[xshift=9cm,yshift=-1cm,on grid] 
+      \draw (0,0)
+      to[I,i=$I_{no}$] (0,2)
+      to[short,-o] (3,2)
+      (1,2) to[R, l^=$R_{eq}$] (1,0)
+      (0,0) to[short,-o] (3,0);
+      \draw
+      [red] (3,2) to[R, l=$R_L$,color=red] (3,0)
+      ;
+      \end{scope}
+\end{circuitikz}
+\end{document}
