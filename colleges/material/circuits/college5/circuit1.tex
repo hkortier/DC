@@ -1,8 +1,7 @@
 \documentclass{standalone}
 \usepackage{tikz}
-\usepackage[european]{circuitikz}
+\usepackage[american]{circuitikz}
 \begin{document}
-
 \begin{circuitikz}
 
 \draw
@@ -15,7 +14,7 @@
   to[R=$R_4$, *-*] (6,0);
 
 \draw 
-  (3,3) to[R=$R_5$,-*] (9,3);
+  (3,3) to[R=$R_5$,v=$U_{AB}$,-*] (9,3);
 
 %\begin{scope}[>=latex,color=magenta,thick,text=black]
 %\draw[->,rounded corners=7pt]   
