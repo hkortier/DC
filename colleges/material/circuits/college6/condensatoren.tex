@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\begin{document}
+
+\begin{circuitikz}
+    \draw (0,0) to [C,l=$C_1$] (0,3)
+    to [short] (2,3);
+    \draw (0,0) to [short] (3,0)
+    to [C,l=$C_2$] (3,3)
+    to [short] (0,3);
+    
+    \begin{scope}[xshift=5cm,yshift=1.5cm,on grid] 
+    \draw (0,0) to [C,l=$C_3$] (2,0) 
+    to [C,l=$C_4$] (4,0); 
+    \end{scope}
+\end{circuitikz} 
+\end{document}
