@@ -15,3 +15,5 @@
 [Week 7](colleges/material/college7.ipynb)
 
 [Week 8](colleges/material/college8.ipynb)
+
+[6 methoden](colleges/material/6 methoden.ipynb)
