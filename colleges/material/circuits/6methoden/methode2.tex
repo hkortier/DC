@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\begin{document}
+
+\begin{circuitikz}
+      \draw (0,0)
+      to[I,i=$4A$] (0,3) 
+      to[short,-*] (2,3)
+      to [R, l=$4\Omega$, i=$I_1$, v=$U_1$] (2,0)
+      to[short] (0,0); 
+      
+      \draw (2,3) 
+      to [V, v^=$8V$] (5,3)
+      to [R, l=$12\Omega$, i=$I_2$, v=$U_2$] (5,0);
+    
+      \draw (5,0)
+      to[short] (2,0);
+      
+      \begin{scope}[>=latex,color=magenta,thick,text=magenta]
+      \draw[short] (2,3) node[label={above:$P_1$}] {};
+      \draw[thin, <-, >=triangle 45] (3.5,1.5)node{$L_1$}  ++(-60:.75) arc (-60:170:.75);
+      %\draw[thin, <-, >=triangle 45] (4.5,1.5)node{$L_2$}  ++(-60:.75) arc (-60:170:.75);
+      \end{scope}
+
+    \end{circuitikz}
+\end{document}

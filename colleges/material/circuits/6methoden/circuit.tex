@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\begin{document}
+
+\begin{circuitikz}
+      \draw (0,0)
+      to[I,i=$4A$] (0,3) 
+      to[short] (2,3)
+      to [R, l=$4\Omega$, i=$I_1$] (2,0)
+      to[short] (0,0); 
+      
+      \draw (2,3) 
+      to [V, v^=$8V$] (5,3)
+      to [R, l=$12\Omega$, i=$I_2$] (5,0);
+    
+      \draw (5,0)
+      to[short] (2,0);
+      %to[I,i=$6~A$] (7,0)
+      %to[short] (2,0);
+
+    \end{circuitikz}
+\end{document}
